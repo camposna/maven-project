@@ -2,13 +2,17 @@ package com.mulesoft.training;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.mule.tck.junit4.FunctionalTestCase;
+import org.mule.tck.junit4.rule.DynamicPort;
 
 public class HelloMavenTest extends FunctionalTestCase {
-
-    @Test
+	@Rule
+	public DynamicPort dynamicPort = new DynamicPort("http.port");
+	@Test
     public void mavenFlowReturnsHelloMaven() throws Exception {
+		System.out.print("\n\n======> Dynamic port used int Test case #1" + dynamicPort.getNumber() +"\n\n" );
         runFlowAndExpect("mavenFlow", "Hello Maven");
     }
     
@@ -18,3 +22,4 @@ public class HelloMavenTest extends FunctionalTestCase {
     }
 
 }
+
